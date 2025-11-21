@@ -3,7 +3,9 @@
 // === Konstanten ===
 const TILE_COUNT = 30;
 const START_VEL = 6;
-const OBSTACLE_COUNT = 3;
+const OBSTACLE_MIN = 1;
+const OBSTACLE_MAX = 7;
+let OBSTACLE_COUNT = getRandomInt(OBSTACLE_MIN, OBSTACLE_MAX);
 
 // === Elemente ===
 const canvas = document.getElementById("gameCanvas");
@@ -13,10 +15,6 @@ const pauseBtn = document.getElementById("pauseBtn");
 const restartBtn = document.getElementById("restartBtn");
 const motionBtn = document.getElementById("motionPermissionBtn");
 const touchArrows = document.querySelectorAll(".touch-arrows .arrow");
-
-if (!touchArrows || touchArrows.length === 0) {
-  console.warn("touchArrows: keine Buttons gefunden");
-}
 
 // === Variablen ===
 let tileSize = 0;
@@ -338,6 +336,10 @@ function resetGame() {
   placeFood();
   lastTime = performance.now();
   draw();
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // === Start ===
