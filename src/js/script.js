@@ -1,9 +1,9 @@
 /* game.js - vollständige Version */
 
 // === Konstanten ===
-const TILE_COUNT = 20;
+const TILE_COUNT = 30;
 const START_VEL = 6;
-const OBSTACLE_COUNT = 6;
+const OBSTACLE_COUNT = 3;
 
 // === Elemente ===
 const canvas = document.getElementById("gameCanvas");
