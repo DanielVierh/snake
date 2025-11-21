@@ -1,0 +1,125 @@
+// style.scss
+$bg: #0e1116;
+$card: #111418;
+$accent: #6ee7b7;
+$text: #e6eef6;
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #071022 0%, #0b1220 100%);
+  color: $text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.game-wrap {
+  width: 100%;
+  max-width: 760px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+}
+
+h1 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.canvas-area {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+canvas {
+  background: #02040a;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  touch-action: none;
+}
+
+.mobile-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 12px;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: $text;
+  cursor: pointer;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.touch-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.arrow {
+  width: 56px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.02);
+  color: $text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hrow {
+  display: flex;
+  gap: 6px;
+}
+
+.score {
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 12px;
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .canvas-area {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobile-ui {
+    flex-direction: row;
+  }
+}

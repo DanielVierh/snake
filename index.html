@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Snake - Tilt & Keyboard</title>
+    <link rel="stylesheet" href="src/scss/styles.css" />
+  </head>
+  <body>
+    <main class="game-wrap">
+      <h1>Snake — Tilt & Keyboard</h1>
+
+      <div class="topbar">
+        <div class="score">Punkte: <span id="score">0</span></div>
+        <div class="controls-hint">Pfeiltasten oder Handy neigen</div>
+      </div>
+
+      <div class="canvas-area">
+        <canvas
+          id="gameCanvas"
+          width="480"
+          height="480"
+          aria-label="Snake-Spiel"
+        ></canvas>
+
+        <!-- Mobile: Buttons & permission -->
+        <div class="mobile-ui">
+          <button id="motionPermissionBtn" class="btn">Motion erlauben</button>
+          <div class="touch-arrows" aria-hidden="true">
+            <button class="arrow up" data-dir="up">▲</button>
+            <div class="hrow">
+              <button class="arrow left" data-dir="left">◀</button>
+              <button class="arrow right" data-dir="right">▶</button>
+            </div>
+            <button class="arrow down" data-dir="down">▼</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="restartBtn" class="btn">Neustart</button>
+        <button id="pauseBtn" class="btn">Pause</button>
+      </div>
+
+      <footer>
+        <small
+          >Neigung benutzt DeviceMotion/DeviceOrientation. Auf iOS muss explizit
+          erlaubt werden.</small
+        >
+      </footer>
+    </main>
+
+    <script src="src/js/script.js"></script>
+  </body>
+</html>
