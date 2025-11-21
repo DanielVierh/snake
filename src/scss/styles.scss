@@ -84,12 +84,12 @@ canvas {
 .touch-arrows {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 19px;
   align-items: center;
 }
 .arrow {
   width: 56px;
-  height: 40px;
+  height: 60px;
   font-size: 18px;
   border-radius: 8px;
   border: none;
@@ -98,6 +98,17 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.left {
+    width: 150px;
+  }
+  &.right {
+    width: 150px;
+  }
+  &.up,
+  &.down {
+    width: 100%;
+  }
 }
 .hrow {
   display: flex;

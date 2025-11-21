@@ -2,7 +2,10 @@
 <html lang="de">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
     <title>Snake - Tilt & Keyboard</title>
     <link rel="stylesheet" href="src/scss/styles.css" />
   </head>
@@ -25,8 +28,7 @@
 
         <!-- Mobile: Buttons & permission -->
         <div class="mobile-ui">
-          <button id="motionPermissionBtn" class="btn">Motion erlauben</button>
-          <div class="touch-arrows" aria-hidden="true">
+          <div class="touch-arrows">
             <button class="arrow up" data-dir="up">▲</button>
             <div class="hrow">
               <button class="arrow left" data-dir="left">◀</button>
@@ -40,6 +42,7 @@
       <div class="actions">
         <button id="restartBtn" class="btn">Neustart</button>
         <button id="pauseBtn" class="btn">Pause</button>
+        <button id="motionPermissionBtn" class="btn">Motion erlauben</button>
       </div>
 
       <footer>

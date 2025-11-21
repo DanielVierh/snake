@@ -12,7 +12,11 @@ const scoreEl = document.getElementById("score");
 const pauseBtn = document.getElementById("pauseBtn");
 const restartBtn = document.getElementById("restartBtn");
 const motionBtn = document.getElementById("motionPermissionBtn");
-const touchArrows = document.querySelectorAll(".touch-btn");
+const touchArrows = document.querySelectorAll(".touch-arrows .arrow");
+
+if (!touchArrows || touchArrows.length === 0) {
+  console.warn("touchArrows: keine Buttons gefunden");
+}
 
 // === Variablen ===
 let tileSize = 0;
@@ -207,14 +211,71 @@ function setupControls() {
     }
   });
 
+  // Hilfsfunktion: handle input
+  const handleInput = (btn) => (evt) => {
+    // Debug: bei Bedarf einschalten
+    // console.log('touch event', evt.type, btn.dataset.dir);
+
+    // Verhindere Scroll/Zoom/etc. wenn möglich
+    if (evt.cancelable) evt.preventDefault();
+    evt.stopPropagation();
+
+    const d = btn.dataset.dir;
+    switch (d) {
+      case "up":
+        setDir(0, -1);
+        break;
+      case "down":
+        setDir(0, 1);
+        break;
+      case "left":
+        setDir(-1, 0);
+        break;
+      case "right":
+        setDir(1, 0);
+        break;
+      default:
+        break;
+    }
+  };
+
   touchArrows.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const d = btn.getAttribute("data-dir");
-      if (d === "up") setDir(0, -1);
-      if (d === "down") setDir(0, 1);
-      if (d === "left") setDir(-1, 0);
-      if (d === "right") setDir(1, 0);
+    // Stelle sicher, dass button kein submit macht
+    if (btn.tagName.toLowerCase() === "button" && !btn.hasAttribute("type")) {
+      btn.setAttribute("type", "button");
+    }
+
+    // CSS: disable default touch actions auf Button selbst (kann auch in CSS gesetzt werden)
+    btn.style.touchAction = "none"; // wichtig für pointer events / scroll blocking
+
+    // Pointer events (modern, inkl. iOS Safari 13+)
+    try {
+      btn.addEventListener("pointerdown", handleInput(btn), { passive: false });
+    } catch (e) {
+      // falls browser die Optionen nicht unterstützt
+      btn.addEventListener("pointerdown", handleInput(btn));
+    }
+
+    // Fallbacks: Touch & Mouse (ältere iOS / Android)
+    try {
+      btn.addEventListener("touchstart", handleInput(btn), { passive: false });
+    } catch (e) {
+      btn.addEventListener("touchstart", handleInput(btn));
+    }
+    btn.addEventListener("mousedown", handleInput(btn));
+
+    // Optional: kurze visuelle Rückmeldung bei pointerdown/up
+    btn.addEventListener("pointerdown", () => btn.classList.add("active"), {
+      passive: true,
     });
+    btn.addEventListener("pointerup", () => btn.classList.remove("active"), {
+      passive: true,
+    });
+    btn.addEventListener(
+      "pointercancel",
+      () => btn.classList.remove("active"),
+      { passive: true }
+    );
   });
 
   pauseBtn.addEventListener("click", () => {
