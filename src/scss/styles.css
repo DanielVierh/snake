@@ -46,13 +46,14 @@ h1 {
 }
 
 canvas {
-  background: #02040a;
+  background: #1f1f1f;
   border-radius: 8px;
   width: 100%;
   max-width: 480px;
   height: auto;
   display: block;
   touch-action: none;
+  outline: 1px solid white;
 }
 
 .mobile-ui {
