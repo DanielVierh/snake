@@ -252,10 +252,10 @@ function activateTilt() {
     tiltY = tiltY * (1 - tiltSmooth) + ay * tiltSmooth;
 
     const t = tiltThreshold;
-    if (tiltY < -t) setDir(0, -1);
-    else if (tiltY > t) setDir(0, 1);
-    else if (tiltX > t) setDir(1, 0);
-    else if (tiltX < -t) setDir(-1, 0);
+    if (tiltY < -t) setDir(0, 1);
+    else if (tiltY > t) setDir(0, -1);
+    else if (tiltX > t) setDir(-1, 0);
+    else if (tiltX < -t) setDir(1, 0);
   });
 }
 
