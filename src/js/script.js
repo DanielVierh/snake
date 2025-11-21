@@ -315,8 +315,8 @@ function activateTilt() {
     const t = tiltThreshold;
     if (tiltY < -t) setDir(0, 1);
     else if (tiltY > t) setDir(0, -1);
-    else if (tiltX > t) setDir(-1, 0);
-    else if (tiltX < -t) setDir(1, 0);
+    else if (tiltX > t) setDir(1, 0);
+    else if (tiltX < -t) setDir(-1, 0);
   });
 }
 
