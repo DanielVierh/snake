@@ -11,6 +11,7 @@ let OBSTACLE_COUNT = getRandomInt(OBSTACLE_MIN, OBSTACLE_MAX);
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const scoreEl = document.getElementById("score");
+const highscoreEl = document.getElementById("highscore");
 const pauseBtn = document.getElementById("pauseBtn");
 const restartBtn = document.getElementById("restartBtn");
 const motionBtn = document.getElementById("motionPermissionBtn");
@@ -28,6 +29,7 @@ let vel = START_VEL;
 let paused = false;
 let gameOver = false;
 let lastTime = 0;
+let highscore = 0;
 
 // Motion
 let tiltX = 0;
@@ -102,6 +104,11 @@ function update() {
 
 function endGame() {
   gameOver = true;
+  if (score > highscore) {
+    highscore = score;
+    saveHighscore(highscore);
+    updateHighscoreDisplay();
+  }
 }
 
 // === Platzierungen ===
@@ -185,6 +192,28 @@ function drawCell(cx, cy, color, head = false) {
 
 function updateScore() {
   scoreEl.textContent = score;
+}
+
+function loadHighscore() {
+  try {
+    const v = localStorage.getItem("snakeHighscore");
+    return v ? parseInt(v, 10) : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
+function saveHighscore(h) {
+  try {
+    localStorage.setItem("snakeHighscore", String(h));
+  } catch (e) {
+    // ignore
+  }
+}
+
+function updateHighscoreDisplay() {
+  if (!highscoreEl) return;
+  highscoreEl.textContent = highscore;
 }
 
 // === Steuerung ===
@@ -343,6 +372,10 @@ function getRandomInt(min, max) {
 }
 
 // === Start ===
+// load highscore from localStorage and show it
+highscore = loadHighscore();
+updateHighscoreDisplay();
+
 setupControls();
 resetGame();
 onResize();
