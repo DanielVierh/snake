@@ -221,15 +221,19 @@ function setupControls() {
     if (gameOver) return;
     switch (e.key) {
       case "ArrowUp":
+        console.log("Up");
         setDir(0, -1);
         break;
       case "ArrowDown":
+        console.log("Dowm");
         setDir(0, 1);
         break;
       case "ArrowLeft":
+        console.log("Left");
         setDir(-1, 0);
         break;
       case "ArrowRight":
+        console.log("Right");
         setDir(1, 0);
         break;
     }
@@ -238,7 +242,7 @@ function setupControls() {
   // Hilfsfunktion: handle input
   const handleInput = (btn) => (evt) => {
     // Debug: bei Bedarf einschalten
-    // console.log('touch event', evt.type, btn.dataset.dir);
+    console.log("touch event", evt.type, btn.dataset.dir);
 
     // Verhindere Scroll/Zoom/etc. wenn möglich
     if (evt.cancelable) evt.preventDefault();

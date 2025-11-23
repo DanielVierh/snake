@@ -28,8 +28,10 @@ body {
 }
 
 h1 {
-  margin: 0 0 12px 0;
   font-size: 20px;
+  text-align: center;
+  font-size: 2rem;
+  color: lightgreen;
 }
 
 .topbar {
@@ -53,7 +55,7 @@ canvas {
   height: auto;
   display: block;
   touch-action: none;
-  outline: 1px solid white;
+  outline: 1px solid lightgreen;
 }
 
 .mobile-ui {
