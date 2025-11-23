@@ -73,14 +73,11 @@ function update() {
   lastDir = { ...dir };
   const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
 
-  if (
-    head.x < 0 ||
-    head.x >= TILE_COUNT ||
-    head.y < 0 ||
-    head.y >= TILE_COUNT
-  ) {
-    return endGame();
-  }
+  // Wrap-around: erscheint die Schlange am gegenüberliegenden Rand wieder
+  if (head.x < 0) head.x = TILE_COUNT - 1;
+  else if (head.x >= TILE_COUNT) head.x = 0;
+  if (head.y < 0) head.y = TILE_COUNT - 1;
+  else if (head.y >= TILE_COUNT) head.y = 0;
 
   if (snake.some((p) => p.x === head.x && p.y === head.y)) {
     return endGame();
