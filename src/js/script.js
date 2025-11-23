@@ -95,7 +95,7 @@ function update() {
   if (food && head.x === food.x && head.y === food.y) {
     score++;
     updateScore();
-    vel += 0.15;
+    vel += 0.01;
     placeFood();
   } else {
     snake.pop();
