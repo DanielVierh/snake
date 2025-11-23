@@ -1,7 +1,7 @@
 /* game.js - vollständige Version */
 
 // === Konstanten ===
-const TILE_COUNT = 30;
+const TILE_COUNT = getRandomInt(15, 30);
 const START_VEL = 6;
 const OBSTACLE_MIN = 1;
 const OBSTACLE_MAX = 7;
@@ -304,7 +304,12 @@ function setupControls() {
 
   pauseBtn.addEventListener("click", () => {
     paused = !paused;
-    if (!paused) lastTime = performance.now();
+    if (!paused) {
+      lastTime = performance.now();
+      pauseBtn.innerHTML = "Pause";
+    } else {
+      pauseBtn.innerHTML = "Weiter";
+    }
   });
 
   restartBtn.addEventListener("click", () => {
