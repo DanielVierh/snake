@@ -3,7 +3,7 @@
 // === Konstanten ===
 const TILE_COUNT = getRandomInt(15, 30);
 const START_VEL = 6;
-const OBSTACLE_MIN = 1;
+const OBSTACLE_MIN = 0;
 const OBSTACLE_MAX = 7;
 let OBSTACLE_COUNT = getRandomInt(OBSTACLE_MIN, OBSTACLE_MAX);
 
