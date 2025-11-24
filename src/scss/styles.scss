@@ -89,9 +89,10 @@ canvas {
   flex-direction: column;
   gap: 19px;
   align-items: center;
+  width: 100vw;
 }
 .arrow {
-  width: 56px;
+  width: 80px;
   height: 60px;
   font-size: 18px;
   border-radius: 8px;
@@ -102,20 +103,20 @@ canvas {
   align-items: center;
   justify-content: center;
 
-  &.left {
-    width: 150px;
-  }
-  &.right {
-    width: 150px;
-  }
-  &.up,
-  &.down {
-    width: 100%;
-  }
+  // &.left {
+  //   width: 150px;
+  // }
+  // &.right {
+  //   width: 150px;
+  // }
+  // &.up,
+  // &.down {
+  //   width: 100%;
+  // }
 }
 .hrow {
   display: flex;
-  gap: 6px;
+  gap: 0 130px;
 }
 
 .score {
