@@ -16,6 +16,7 @@ const pauseBtn = document.getElementById("pauseBtn");
 const restartBtn = document.getElementById("restartBtn");
 const motionBtn = document.getElementById("motionPermissionBtn");
 const touchArrows = document.querySelectorAll(".touch-arrows .arrow");
+const lbl_live = document.getElementById("lbl_live");
 
 // === Variablen ===
 let tileSize = 0;
@@ -30,6 +31,7 @@ let paused = false;
 let gameOver = false;
 let lastTime = 0;
 let highscore = 0;
+let live = 3;
 
 // Motion
 let tiltX = 0;
@@ -80,11 +82,20 @@ function update() {
   else if (head.y >= TILE_COUNT) head.y = 0;
 
   if (snake.some((p) => p.x === head.x && p.y === head.y)) {
-    return endGame();
+    live--;
+    lbl_live.innerHTML = `Leben: ${live}`;
+
+    if (live === 0) {
+      return endGame();
+    }
   }
 
   if (obstacles.some((o) => o.x === head.x && o.y === head.y)) {
-    return endGame();
+    live--;
+    lbl_live.innerHTML = `Leben: ${live}`;
+    if (live === 0) {
+      return endGame();
+    }
   }
 
   snake.unshift(head);
@@ -221,19 +232,15 @@ function setupControls() {
     if (gameOver) return;
     switch (e.key) {
       case "ArrowUp":
-        console.log("Up");
         setDir(0, -1);
         break;
       case "ArrowDown":
-        console.log("Dowm");
         setDir(0, 1);
         break;
       case "ArrowLeft":
-        console.log("Left");
         setDir(-1, 0);
         break;
       case "ArrowRight":
-        console.log("Right");
         setDir(1, 0);
         break;
     }
@@ -360,6 +367,8 @@ function setDir(x, y) {
 
 function resetGame() {
   score = 0;
+  live = 3;
+  lbl_live.innerHTML = `Leben: ${live}`;
   updateScore();
   vel = START_VEL;
   gameOver = false;
