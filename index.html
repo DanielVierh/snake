@@ -44,7 +44,7 @@
 
       <div class="actions">
         <button id="restartBtn" class="btn">Neustart</button>
-        <button id="pauseBtn" class="btn">Pause</button>
+        <button id="pauseBtn" class="btn">Start</button>
         <button id="motionPermissionBtn" class="btn">Motion erlauben</button>
       </div>
 
@@ -55,6 +55,37 @@
         >
       </footer>
     </main>
+
+    <section class="modal" id="start_modal">
+      <div class="setting-wrapper">
+        <h3>Spieleinstellungen</h3>
+        <div class="setting">
+          <label id="lbl_level_size" for="rng_level_size"
+            >Level Größe: 22</label
+          >
+          <input
+            id="rng_level_size"
+            type="range"
+            min="15"
+            max="30"
+            value="22"
+          />
+        </div>
+        <div class="setting">
+          <label id="lbl_amount_obstacles" for="rng_amount_obstacles"
+            >Anzahl Hindernisse: 3</label
+          >
+          <input
+            id="rng_amount_obstacles"
+            type="range"
+            min="0"
+            max="7"
+            value="3"
+          />
+        </div>
+      </div>
+      <button id="btn_start_game">Spiel starten</button>
+    </section>
 
     <script src="src/js/script.js"></script>
   </body>

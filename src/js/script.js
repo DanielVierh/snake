@@ -1,11 +1,9 @@
 /* game.js - vollständige Version */
 
 // === Konstanten ===
-const TILE_COUNT = getRandomInt(15, 30);
+let TILE_COUNT = 22;
 const START_VEL = 6;
-const OBSTACLE_MIN = 0;
-const OBSTACLE_MAX = 7;
-let OBSTACLE_COUNT = getRandomInt(OBSTACLE_MIN, OBSTACLE_MAX);
+let OBSTACLE_COUNT = 3;
 
 // === Elemente ===
 const canvas = document.getElementById("gameCanvas");
@@ -17,6 +15,10 @@ const restartBtn = document.getElementById("restartBtn");
 const motionBtn = document.getElementById("motionPermissionBtn");
 const touchArrows = document.querySelectorAll(".touch-arrows .arrow");
 const lbl_live = document.getElementById("lbl_live");
+const rng_level_size = document.getElementById("rng_level_size");
+const rng_amount_obstacles = document.getElementById("rng_amount_obstacles");
+const btn_start_game = document.getElementById("btn_start_game");
+const start_modal = document.getElementById("start_modal");
 
 // === Variablen ===
 let tileSize = 0;
@@ -27,7 +29,7 @@ let food = null;
 let obstacles = [];
 let score = 0;
 let vel = START_VEL;
-let paused = false;
+let paused = true;
 let gameOver = false;
 let lastTime = 0;
 let highscore = 0;
@@ -372,7 +374,7 @@ function resetGame() {
   updateScore();
   vel = START_VEL;
   gameOver = false;
-  paused = false;
+  paused = true;
   snake = [{ x: 8, y: 8 }];
   dir = { x: 1, y: 0 };
   lastDir = { ...dir };
@@ -395,3 +397,26 @@ setupControls();
 resetGame();
 onResize();
 requestAnimationFrame(gameLoop);
+
+rng_level_size.addEventListener("change", () => {
+  document.getElementById(
+    "lbl_level_size"
+  ).innerHTML = `Level Größe: ${rng_level_size.value}`;
+  TILE_COUNT = rng_level_size.value;
+  resetGame();
+  onResize();
+});
+
+rng_amount_obstacles.addEventListener("change", () => {
+  document.getElementById(
+    "lbl_amount_obstacles"
+  ).innerHTML = `Anzahl Hindernisse: ${rng_amount_obstacles.value}`;
+  OBSTACLE_COUNT = rng_amount_obstacles.value;
+  resetGame();
+});
+
+btn_start_game.addEventListener("click", () => {
+  start_modal.classList.add("invisible");
+  paused = false;
+  pauseBtn.innerHTML = "Pause";
+});
